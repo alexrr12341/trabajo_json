@@ -10,9 +10,14 @@ def numactores(doc):
         print("Hay",len(info["actors"]),"Actores.")
 
 def sinopsis(doc,p1,p2):
+    listaPeliculas=[]
+    for peliculas in doc:
+        sinopsis=peliculas["storyline"]
+        if sinopsis.count(p1)>0 and sinopsis.count(p2)>0:
+            listaPeliculas.append(peliculas["title"])
+    return listaPeliculas
 
-
-########################
+########################  
 import json
 import codecs
 doc=json.load(codecs.open('movies.json', 'r', 'utf-8-sig'))
@@ -35,21 +40,11 @@ while True:
         elif opcion==2:
             numactores(doc)
         elif opcion==3:
-            print("Hola")
-        elif opcion==4:
-            juego=str(input("Dime el nombre del juego. "))
-            if juego_compañia(doc,juego)==None:
-                print("Ese juego no tiene compañia.")
-            else:
-                print("Su compañia es",juego_compañia(doc,juego))
-        elif opcion==5:
-            juego=str(input("Dime el nombre del juego. "))
-            try:
-                lista=caracteristicas_juego(doc,juego)
-            except:
-                print("Ese juego no tiene caracteristicas.")
-            else:
-                print("Hola")
+            palabra=str(input("Dime la primera palabra. "))
+            palabra2=str(input("Dime la segunda palabra. "))
+            for titulo in sinopsis(doc,palabra,palabra2):
+                print(titulo)
+            
         elif opcion==0:
             print("Fin del programa.")
             break
