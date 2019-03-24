@@ -16,7 +16,16 @@ def sinopsis(doc,p1,p2):
         if sinopsis.count(p1)>0 and sinopsis.count(p2)>0:
             listaPeliculas.append(peliculas["title"])
     return listaPeliculas
-
+def peliculaactor(doc,actor):
+    listaPelis=[]
+    for info in doc:
+        for actores in info["actors"]:
+            if actor==actores:
+                print("Actor detectado.")
+                input("Pulse Enter para continuar.")
+                listaPelis.append(info["title"])
+    return listaPelis
+ 
 ########################  
 import json
 import codecs
@@ -44,6 +53,12 @@ while True:
             palabra2=str(input("Dime la segunda palabra. "))
             for titulo in sinopsis(doc,palabra,palabra2):
                 print(titulo)
+        elif opcion==4:
+            actor=str(input("Dime el actor para buscar en que pelicula trabaja. "))
+            for peliculas in peliculaactor(doc,actor):
+                print(peliculas)
+        elif opcion==5:
+            print("Buenas.")
             
         elif opcion==0:
             print("Fin del programa.")
