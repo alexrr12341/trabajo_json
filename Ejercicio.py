@@ -25,6 +25,8 @@ def peliculaactor(doc,actor):
                 input("Pulse Enter para continuar.")
                 listaPelis.append(info["title"])
     return listaPelis
+def posterpelicula(doc,fecha1,fecha2):
+    print("Hey.")
  
 ########################  
 import json
@@ -58,7 +60,9 @@ while True:
             for peliculas in peliculaactor(doc,actor):
                 print(peliculas)
         elif opcion==5:
-            print("Buenas.")
+            fecha1=str(input("¿Cual es la fecha 1? (YYYY-MM-DD) "))
+            fecha2=str(input("¿Cual es la fecha 2? (YYYY-MM-DD) "))
+            posterpelicula(doc,fecha1,fecha2)
             
         elif opcion==0:
             print("Fin del programa.")
